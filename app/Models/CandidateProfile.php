@@ -24,10 +24,8 @@ class CandidateProfile extends Model
         'business_interest',
         'nid_passport_number',
         'nid_passport_photo',
-        'status',
     ];
 
-    // Candidate belongs to a user
     public function user()
     {
         return $this->belongsTo(User::class);

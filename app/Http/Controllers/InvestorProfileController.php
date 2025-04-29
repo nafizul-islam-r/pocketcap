@@ -29,33 +29,33 @@ class InvestorProfileController extends Controller
     public function store(Request $request)
     {
         // 1. Validate all the fields
-        $data = $request->validate([
+        $validated = $request->validate([
             'name' => 'required|string|max:255',
             'phone' => 'required|string|max:20',
-            'email' => 'required|email|max:255',
+            'email' => 'required|email|max:255|unique:investor_profiles,email',
             'dob' => 'required|date',
             'profession' => 'required|string|max:255',
             'company' => 'required|string|max:255',
             'business_interest' => 'required|string|max:255',
-            'nid_passport_number' => 'required|string|max:50|unique:investor_profiles',
-            'nid_passport_photo' => 'required|image|max:2048',
+            'nid_passport_number' => 'required|string|max:50|unique:investor_profiles,nid_passport_number',
+            'nid_passport_photo' => 'required|image|max:2048|mimes:jpg,jpeg,png,pdf',
             'bank_statement_pdf' => 'required|mimes:pdf|max:5120',
         ]);
 
         // 2. Handle file uploads
-        $data['nid_passport_photo'] = $request
+        $validated['nid_passport_photo'] = $request
             ->file('nid_passport_photo')
             ->store('uploads/nid_photos', 'public');
-        $data['bank_statement_pdf'] = $request
+        $validated['bank_statement_pdf'] = $request
             ->file('bank_statement_pdf')
             ->store('uploads/bank_statements', 'public');
 
         // 3. Attach the authenticated user & default status
-        $data['user_id'] = Auth::user()->id;
-        $data['status'] = 'pending';
+        $validated['user_id'] = Auth::id();
+        $validated['status'] = 'pending';
 
         // 4. Create the record
-        \App\Models\InvestorProfile::create($data);
+        \App\Models\InvestorProfile::create($validated);
 
         // 5. Redirect with a success message
         return redirect()->route('dashboard')

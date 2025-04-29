@@ -57,19 +57,19 @@
             <!-- NID or Passport -->
             <div class="mb-4">
                 <label for="nid" class="block text-sm font-medium text-gray-700">NID or Passport No</label>
-                <input type="text" name="nid" id="nid" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                <input type="text" name="nid_passport_number" id="nid" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
             </div>
 
             <!-- NID/Passport Photo -->
             <div class="mb-4">
                 <label for="nid_photo" class="block text-sm font-medium text-gray-700">NID/Passport Photo</label>
-                <input type="file" name="nid_photo" id="nid_photo" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                <input type="file" name="nid_passport_photo" id="nid_photo" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
             </div>
 
             <!-- Bank Statement -->
             <div class="mb-4">
                 <label for="bank_statement" class="block text-sm font-medium text-gray-700">Bank Statement</label>
-                <input type="file" name="bank_statement" id="bank_statement" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                <input type="file" name="bank_statement_pdf" id="bank_statement" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
             </div>
 
             <!-- Submit Button -->

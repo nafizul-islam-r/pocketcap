@@ -21,7 +21,6 @@ class InvestorProfile extends Model
         'nid_passport_number',
         'nid_passport_photo',
         'bank_statement_pdf',
-        'status',
     ];
 
     // Investor belongs to a user

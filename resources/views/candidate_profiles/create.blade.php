@@ -57,7 +57,7 @@
             <!-- Permanent Address -->
             <div class="mb-4">
                 <label for="address" class="block text-sm font-medium text-gray-700">Permanent Address</label>
-                <textarea name="address" id="address" rows="3" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required></textarea>
+                <textarea name="permanent_address" id="address" rows="3" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required></textarea>
             </div>
 
             <!-- Profession -->
