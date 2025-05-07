@@ -1,0 +1,1 @@
+<img src="{{ asset('logo_sm.png') }}" alt="PocketCap Logo Small" width="50">
