@@ -19,11 +19,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware(['auth', 'candidate'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::resource('candidate-profiles', CandidateProfileController::class);
-});
-
-Route::middleware(['auth', 'investor'])->group(function () {
     Route::resource('investor-profiles', InvestorProfileController::class);
 });
 
