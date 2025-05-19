@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 @import "flowbite/src/themes/default";
-@plugin "flowbite/plugin";
+@import "flowbite/plugin";
 @source "../../node_modules/flowbite";
