@@ -45,10 +45,9 @@ class CandidateProfileController extends Controller
         ]);
 
         // Handle file upload
-        if ($request->hasFile('nid_passport_photo')) {
-            $path = $request->file('nid_passport_photo')->store('nid_photos', 'public');
-            $validated['nid_passport_photo'] = $path;
-        }
+        $validated['nid_passport_photo'] = $request
+            ->file('nid_passport_photo')
+            ->store('uploads/nid_photos', 'public');
 
         $validated['user_id'] = Auth::id();
         $validated['status'] = 'pending';
