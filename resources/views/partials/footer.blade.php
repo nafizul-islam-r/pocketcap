@@ -1,4 +1,4 @@
-<footer class="w-full bg-gray-900 text-white border-t border-gray-700 pt-2 -mb-5">
+<div class="w-full bg-gray-900 text-white border-t border-gray-700 pt-2 -mb-5">
     <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center">
         <!-- Left Column -->
         <div class="flex items-center space-x-2 text-sm text-gray-400">
@@ -15,4 +15,4 @@
             <a href="#" class="hover:underline">Terms & Conditions</a>
         </div>
     </div>
-</footer>
+</div>
