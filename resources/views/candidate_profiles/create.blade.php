@@ -1,4 +1,3 @@
-@include('layouts.sidebar-u')
 <!DOCTYPE html>
 <html lang="en">
 <head>
