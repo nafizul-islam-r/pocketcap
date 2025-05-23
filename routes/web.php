@@ -27,15 +27,8 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::resource('applications', ApplicationController::class)->only(['index', 'create', 'store', 'show']);
-    Route::resource('investments', InvestmentController::class)->only(['index', 'create', 'store', 'show']);
+    Route::resource('applications', ApplicationController::class);
+    Route::resource('investments', InvestmentController::class);
 });
-
-Route::middleware(['auth', 'role:candidate'])->group(function () {
-    Route::get('/applications/create', [ApplicationController::class, 'create'])->name('applications.create');
-    Route::post('/applications/store', [ApplicationController::class, 'store'])->name('applications.store');
-    Route::get('/applications', [ApplicationController::class, 'show'])->name('applications.show');
-});
-
 
 require __DIR__.'/auth.php';

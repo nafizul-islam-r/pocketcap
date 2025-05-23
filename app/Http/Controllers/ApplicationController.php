@@ -5,33 +5,27 @@ namespace App\Http\Controllers;
 use App\Models\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class ApplicationController extends Controller
 {
+    use AuthorizesRequests;
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $applications = Application::where('user_id', Auth::id())->get();
+        return view('applications.index', compact('applications'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    // Show form to create new application
     public function create()
     {
-        // Prevent duplicate application
-        if (Auth::user()->application) {
-            return redirect()->route('applications.show');
-        }
-
         return view('applications.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    // Store application
     public function store(Request $request)
     {
         $request->validate([
@@ -40,11 +34,11 @@ class ApplicationController extends Controller
             'business_description' => 'required|string',
             'business_duration' => 'required|string|max:255',
             'business_location' => 'required|string|max:255',
-            'requested_amount' => 'required|numeric|min:1',
-            'equity_percentage' => 'required|numeric|min:0|max:100',
+            'requested_amount' => 'required|numeric',
+            'equity_percentage' => 'required|numeric|between:0,100',
         ]);
 
-        $application = Application::create([
+        Application::create([
             'user_id' => Auth::id(),
             'business_name' => $request->business_name,
             'business_type' => $request->business_type,
@@ -57,15 +51,13 @@ class ApplicationController extends Controller
             'status' => 'available',
         ]);
 
-        return redirect()->route('applications.show');
+        return redirect()->route('applications.index')->with('success', 'Application submitted. Please complete payment.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show()
+    // Show a specific application (view-only)
+    public function show(Application $application)
     {
-        $application = Auth::user()->application;
+        $this->authorize('view', $application);
         return view('applications.show', compact('application'));
     }
 
