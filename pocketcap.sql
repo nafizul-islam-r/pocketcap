@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 07, 2025 at 09:02 PM
+-- Generation Time: May 23, 2025 at 06:23 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -24,6 +24,28 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `applications`
+--
+
+CREATE TABLE `applications` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `business_name` varchar(255) NOT NULL,
+  `business_type` varchar(255) NOT NULL,
+  `business_description` text NOT NULL,
+  `business_duration` varchar(255) NOT NULL,
+  `business_location` varchar(255) NOT NULL,
+  `requested_amount` decimal(12,2) NOT NULL,
+  `equity_percentage` decimal(5,2) NOT NULL,
+  `payment_status` enum('paid','unpaid') NOT NULL DEFAULT 'unpaid',
+  `status` enum('available','not_available') NOT NULL DEFAULT 'available',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `cache`
 --
 
@@ -39,7 +61,9 @@ CREATE TABLE `cache` (
 
 INSERT INTO `cache` (`key`, `value`, `expiration`) VALUES
 ('laravel_cache_test@example.com|127.0.0.1', 'i:1;', 1746295656),
-('laravel_cache_test@example.com|127.0.0.1:timer', 'i:1746295656;', 1746295656);
+('laravel_cache_test@example.com|127.0.0.1:timer', 'i:1746295656;', 1746295656),
+('pocketcap_cache_test@example.com|127.0.0.1', 'i:1;', 1747749601),
+('pocketcap_cache_test@example.com|127.0.0.1:timer', 'i:1747749600;', 1747749600);
 
 -- --------------------------------------------------------
 
@@ -94,6 +118,23 @@ CREATE TABLE `failed_jobs` (
   `payload` longtext NOT NULL,
   `exception` longtext NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `investments`
+--
+
+CREATE TABLE `investments` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `application_id` bigint(20) UNSIGNED NOT NULL,
+  `amount_invested` decimal(12,2) NOT NULL,
+  `platform_fee` decimal(12,2) NOT NULL,
+  `payment_status` enum('paid','unpaid') NOT NULL DEFAULT 'unpaid',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -177,7 +218,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (3, '0001_01_01_000002_create_jobs_table', 1),
 (4, '2025_04_26_201053_create_permission_tables', 1),
 (7, '2025_04_26_205431_create_candidate_profiles_table', 2),
-(8, '2025_04_26_205448_create_investor_profiles_table', 2);
+(8, '2025_04_26_205448_create_investor_profiles_table', 2),
+(9, '2025_05_21_162709_create_applications_table', 3),
+(10, '2025_05_21_162718_create_investments_table', 3);
 
 -- --------------------------------------------------------
 
@@ -221,6 +264,13 @@ CREATE TABLE `password_reset_tokens` (
   `token` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `password_reset_tokens`
+--
+
+INSERT INTO `password_reset_tokens` (`email`, `token`, `created_at`) VALUES
+('smnafizulislam@gmail.com', '$2y$12$iWiEA94W1GDW5ZlJ/QHyruU6CMXhPyHQ6aDeBRqFV0qrdfwKGntBm', '2025-05-23 09:26:17');
 
 -- --------------------------------------------------------
 
@@ -290,13 +340,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('6o66t94yAHoPIvhUllPtOxGDAkeSLWIE1lkzXONR', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiSG41U1pRY3cyeEhNSjZOSGQ1amJUWVB4amx4bDV5d3ZHVkQxSXpkSiI7czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MjtzOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czoyMToiaHR0cDovLzEyNy4wLjAuMTo4MDAwIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1746550422),
-('D9SPhpwjgMPJkq12LrbRoaX8UhE1YTTNwmerNRh6', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiTkhxaGlZTVFuMmpMZlUzN0JPbmhVa3RYZEJGWE9LdXo3RGV0WGNPeSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9sb2dpbiI7fX0=', 1746552542),
-('eVKhr6BLasHdyWrYIz5FCP4LrgyHFRo9hzubpjcc', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiY2RBOFF4bXlQTXp3VnlDcDBhOGZEeVZSYXIwbFlwcDVkeG5KMm1ZbCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1746551056),
-('EYKQVQOzWDFeFcEBmXFFQE2wJujiug24HTaTd1v6', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiRTJTWmJQNXdBS25WaldOaUVaS2g1c2RERklPMlp0UkZLTjlURjk5SSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1746551042),
-('nuawoFfZ3s3bIc01ijnbdK2gHGtc3Z06u3W5yRra', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiWVczQjd4WTJlQlJWQkMxNGM0eHlaOWxWMnRMWU1YZ1FFS3dKVGxkWiI7czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MjtzOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czozMToiaHR0cDovLzEyNy4wLjAuMTo4MDAwL2Rhc2hib2FyZCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1746378591),
-('wrhVdhxbyFUUNnekiEEsUoKLMGFbBHECuPjEMNEM', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiejhEenZBNk5Fbmt2NmZBb3BTUmpQSkc2OENSNTdWNlZLcTVtaHpyOSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9kYXNoYm9hcmQiO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToyO30=', 1746644476),
-('ZyAInCaxQdc9VkMJjLelb9UTj5OujhkFKPnvMqbt', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiV0N4N2tERzVSaFVuYTVHZDcyRXNZc21SM0RNa1J5a3J4OWZXVUc4biI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9kYXNoYm9hcmQiO31zOjM6InVybCI7YTowOnt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6Mjt9', 1746378505);
+('KwvWxaTn7fTCYsbVk7Fc6Y8pMpvnsYsqUf0e2oKV', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiUHN2OFhsZHJKNHFueHpmd0xac2g4dzVxNkRoWncyR0R3dHY3dDhmcSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9sb2dpbiI7fX0=', 1748015772);
 
 -- --------------------------------------------------------
 
@@ -320,13 +364,20 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'ACID', 'smnafizulislam@gmail.com', NULL, '$2y$12$bBfgNJF.j4Ca5/prsY53l.JC8HQ12WYRYyOePcBOAQpbaoWFF5zG6', 'yV8xR8wHafvIJSkitBaljzb4XMcB2xiVxz2S7cJ71w2d5L076lcQChcBLf9b', '2025-04-26 14:42:18', '2025-04-26 14:42:18'),
-(2, 'Demo', 'demo@example.com', NULL, '$2y$12$vPyNwSobC/VnhvLq8clVL.QUKpGHEs87aKks575IRxjjlnibow9U6', 'l783RdUt060pNKjfDR47uUExn7PxgiSyLcYMJluVDmXlQWsHtdcp1qcX7kP9', '2025-04-28 10:17:34', '2025-04-28 10:17:34'),
+(1, 'ACID', 'smnafizulislam@gmail.com', NULL, '$2y$12$bBfgNJF.j4Ca5/prsY53l.JC8HQ12WYRYyOePcBOAQpbaoWFF5zG6', 'ZQdujVo8Ig3x7ck8SZ8N00jSokiYjuwGP3ZXzIhMu5l1Z7NKW22ohsSIeDQW', '2025-04-26 14:42:18', '2025-04-26 14:42:18'),
+(2, 'Demo', 'demo@example.com', NULL, '$2y$12$vPyNwSobC/VnhvLq8clVL.QUKpGHEs87aKks575IRxjjlnibow9U6', 'n38KRkK7lbjZRbNifbzimKdF2WPWFA9xnB6T0c1ZlUWoq7n3FdfmjARsbYee', '2025-04-28 10:17:34', '2025-04-28 10:17:34'),
 (3, 'Test User', 'test@example.com', '2025-05-07 10:32:28', '$2y$12$K2MIjHSfLFbDgtd5k1jVZOCc5K1fxWe7Qrxpzbn3P5Qgy7XoZamoG', 'Hwmtto8h0N', '2025-05-07 10:32:28', '2025-05-07 10:32:28');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `applications`
+--
+ALTER TABLE `applications`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `applications_user_id_foreign` (`user_id`);
 
 --
 -- Indexes for table `cache`
@@ -354,6 +405,14 @@ ALTER TABLE `candidate_profiles`
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
+-- Indexes for table `investments`
+--
+ALTER TABLE `investments`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `investments_user_id_foreign` (`user_id`),
+  ADD KEY `investments_application_id_foreign` (`application_id`);
 
 --
 -- Indexes for table `investor_profiles`
@@ -443,6 +502,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `applications`
+--
+ALTER TABLE `applications`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `candidate_profiles`
 --
 ALTER TABLE `candidate_profiles`
@@ -452,6 +517,12 @@ ALTER TABLE `candidate_profiles`
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `investments`
+--
+ALTER TABLE `investments`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
@@ -470,7 +541,7 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `permissions`
@@ -495,10 +566,23 @@ ALTER TABLE `users`
 --
 
 --
+-- Constraints for table `applications`
+--
+ALTER TABLE `applications`
+  ADD CONSTRAINT `applications_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
 -- Constraints for table `candidate_profiles`
 --
 ALTER TABLE `candidate_profiles`
   ADD CONSTRAINT `candidate_profiles_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `investments`
+--
+ALTER TABLE `investments`
+  ADD CONSTRAINT `investments_application_id_foreign` FOREIGN KEY (`application_id`) REFERENCES `applications` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `investments_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `investor_profiles`
