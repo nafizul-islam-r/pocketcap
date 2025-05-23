@@ -1,8 +1,8 @@
 <title>@yield('title', config('app.name') . ' | User Dashboard')</title>
 <x-app-layout>
     
-    {{-- @include('layouts.sidebar-u') --}}
-    @include('layouts.sidebar-a')
+    @include('layouts.sidebar-u')
+    {{-- @include('layouts.sidebar-a') --}}
      
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
