@@ -16,7 +16,7 @@
 
         <div class="w-full bg-white rounded-lg shadow dark:border sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
             <div class="p-6 space-y-6 sm:p-8">
-                <h2 class="text-xl font-bold text-gray-900 dark:text-white">
+                <h2 class= "text-center text-xl font-bold text-gray-900 dark:text-white">
                     Email Verification Required
                 </h2>
 
