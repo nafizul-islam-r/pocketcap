@@ -1,18 +1,26 @@
+<style>
+    .admin-sidebar {
+        display: grid;
+        grid-template-columns: 15% 85%;
+    }
+</style>
+
+
 <title>@yield('title', config('app.name') . ' | User Dashboard')</title>
 <x-app-layout>
-    
-    @include('layouts.sidebar-u')
-    {{-- @include('layouts.sidebar-a') --}}
-     
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    
-                    
-                </div>
-            </div>
+
+    <div class="admin-sidebar">
+        <div class="">
+            @include('layouts.sidebar-u')
+
         </div>
-    </div>
-    
+
+        <div>
+            @include('candidate_profiles.create')
+        </div>
+
+
+
+
+
 </x-app-layout>
