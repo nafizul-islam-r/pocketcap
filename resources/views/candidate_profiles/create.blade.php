@@ -1,100 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PocketCap | Be a Candidate</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-gray-100">
+
+<body class="bg-gray-900">
+
     <div class="max-w-4xl mx-auto bg-white p-8 rounded-md shadow-md">
         <h1 class="text-2xl font-semibold text-center mb-8">Candidate Application</h1>
-        
+
         <form action="{{ route('candidate-profiles.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <!-- Name -->
             <div class="mb-4">
                 <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-                <input type="text" name="name" id="name" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                <input type="text" name="name" id="name"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    required>
             </div>
 
             <!-- Phone Number -->
             <div class="mb-4">
                 <label for="phone" class="block text-sm font-medium text-gray-700">Phone Number</label>
-                <input type="text" name="phone" id="phone" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                <input type="text" name="phone" id="phone"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    required>
             </div>
 
             <!-- Email -->
             <div class="mb-4">
                 <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                <input type="email" name="email" id="email" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                <input type="email" name="email" id="email"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    required>
             </div>
 
             <!-- Date of Birth -->
             <div class="mb-4">
                 <label for="dob" class="block text-sm font-medium text-gray-700">Date of Birth</label>
-                <input type="date" name="dob" id="dob" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                <input type="date" name="dob" id="dob"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    required>
             </div>
 
             <!-- Father's Name -->
             <div class="mb-4">
                 <label for="father_name" class="block text-sm font-medium text-gray-700">Father's Name</label>
-                <input type="text" name="father_name" id="father_name" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                <input type="text" name="father_name" id="father_name"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    required>
             </div>
 
             <!-- Mother's Name -->
             <div class="mb-4">
                 <label for="mother_name" class="block text-sm font-medium text-gray-700">Mother's Name</label>
-                <input type="text" name="mother_name" id="mother_name" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                <input type="text" name="mother_name" id="mother_name"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    required>
             </div>
 
             <!-- Present Address -->
             <div class="mb-4">
                 <label for="address" class="block text-sm font-medium text-gray-700">Present Address</label>
-                <textarea name="present_address" id="address" rows="3" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required></textarea>
+                <textarea name="present_address" id="address" rows="3"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    required></textarea>
             </div>
 
             <!-- Permanent Address -->
             <div class="mb-4">
                 <label for="address" class="block text-sm font-medium text-gray-700">Permanent Address</label>
-                <textarea name="permanent_address" id="address" rows="3" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required></textarea>
+                <textarea name="permanent_address" id="address" rows="3"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    required></textarea>
             </div>
 
             <!-- Profession -->
             <div class="mb-4">
                 <label for="profession" class="block text-sm font-medium text-gray-700">Profession</label>
-                <input type="text" name="profession" id="profession" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                <input type="text" name="profession" id="profession"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    required>
             </div>
 
             <!-- Company -->
             <div class="mb-4">
                 <label for="company" class="block text-sm font-medium text-gray-700">Company</label>
-                <input type="text" name="company" id="company" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                <input type="text" name="company" id="company"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    required>
             </div>
 
             <!-- Business Interest -->
             <div class="mb-4">
                 <label for="business_interest" class="block text-sm font-medium text-gray-700">Business Interest</label>
-                <input type="text" name="business_interest" id="business_interest" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                <input type="text" name="business_interest" id="business_interest"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    required>
             </div>
 
             <!-- NID or Passport -->
             <div class="mb-4">
                 <label for="nid" class="block text-sm font-medium text-gray-700">NID or Passport No</label>
-                <input type="text" name="nid_passport_number" id="nid" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                <input type="text" name="nid_passport_number" id="nid"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    required>
             </div>
 
             <!-- NID/Passport Photo -->
             <div class="mb-4">
                 <label for="nid_photo" class="block text-sm font-medium text-gray-700">NID/Passport Photo</label>
-                <input type="file" name="nid_passport_photo" id="nid_photo" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                <input type="file" name="nid_passport_photo" id="nid_photo"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    required>
             </div>
 
             <!-- Submit Button -->
             <div class="flex justify-center">
-                <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none">Create Profile</button>
+                <button type="submit"
+                    class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none">Create
+                    Profile</button>
             </div>
         </form>
     </div>
 </body>
+
 </html>

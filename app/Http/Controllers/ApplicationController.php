@@ -47,7 +47,7 @@ class ApplicationController extends Controller
             'business_location' => $request->business_location,
             'requested_amount' => $request->requested_amount,
             'equity_percentage' => $request->equity_percentage,
-            'payment_status' => 'unpaid',
+            'payment_status' => 'paid',
             'status' => 'available',
         ]);
 

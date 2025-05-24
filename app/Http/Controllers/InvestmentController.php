@@ -52,7 +52,7 @@ class InvestmentController extends Controller
             'application_id' => $application->id,
             'amount_invested' => $amount,
             'platform_fee' => $fee,
-            'payment_status' => 'unpaid',
+            'payment_status' => 'paid',
         ]);
 
         return redirect()->route('investments.index')->with('success', 'Investment recorded. Please proceed to payment.');

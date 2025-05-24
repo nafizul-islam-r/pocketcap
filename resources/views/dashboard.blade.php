@@ -1,5 +1,5 @@
 <style>
-    .admin-sidebar {
+    .user-sidebar {
         display: grid;
         grid-template-columns: 15% 85%;
     }
