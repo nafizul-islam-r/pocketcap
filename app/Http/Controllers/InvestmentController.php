@@ -6,6 +6,7 @@ use App\Models\Investment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+
 class InvestmentController extends Controller
 {
     /**
@@ -20,42 +21,45 @@ class InvestmentController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Application $application)
     {
-        //
+        // Only investors, and only for available applications
+        if (!Auth::user()->hasRole('investor') || $application->status !== 'available') {
+            abort(403);
+        }
+
+        return view('investments.create', compact('application'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request, $applicationId)
+    public function store(Request $request, Application $application)
     {
-        $application = Application::findOrFail($applicationId);
+        if (!Auth::user()->hasRole('investor') || $application->status !== 'available') {
+            abort(403);
+        }
 
-        $request->validate([
+        $validated = $request->validate([
             'amount_invested' => 'required|numeric|min:1',
         ]);
 
-        $amount = $request->amount_invested;
-        $fee = 0;
+        // 💸 Platform fee logic
+        $amount = $validated['amount_invested'];
+        $feePercentage = match (true) {
+            $amount <= 20000 => 3,
+            $amount <= 50000 => 4,
+            default => 5,
+        };
 
-        if ($amount <= 20000) {
-            $fee = $amount * 0.03;
-        } elseif ($amount <= 50000) {
-            $fee = $amount * 0.04;
-        } else {
-            $fee = $amount * 0.05;
-        }
+        $platform_fee = round(($amount * $feePercentage) / 100, 2);
 
         Investment::create([
             'user_id' => Auth::id(),
             'application_id' => $application->id,
             'amount_invested' => $amount,
-            'platform_fee' => $fee,
-            'payment_status' => 'paid',
+            'platform_fee' => $platform_fee,
+            'payment_status' => 'unpaid', // simulated for now
         ]);
 
-        return redirect()->route('investments.index')->with('success', 'Investment recorded. Please proceed to payment.');
+        return redirect()->route('investments.index')->with('success', 'Investment recorded. Please complete payment later.');
     }
 
     /**

@@ -31,4 +31,11 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('investments', InvestmentController::class);
 });
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/investments', [InvestmentController::class, 'index'])->name('investments.index');
+    Route::get('/investments/create/{application}', [InvestmentController::class, 'create'])->name('investments.create');
+    Route::post('/investments/{application}', [InvestmentController::class, 'store'])->name('investments.store');
+});
+
+
 require __DIR__.'/auth.php';
