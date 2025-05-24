@@ -12,20 +12,35 @@ class CandidateProfileController extends Controller
      */
     public function index()
     {
-        //
+        $profiles = \App\Models\CandidateProfile::all();
+        if (Auth::hasRole('admin')) {
+            return view('candidate_profiles.index', compact('profiles'));
+        }
+        else if (Auth::hasRole('candidate')) {
+            return view('candidate_profiles.show', [
+                'profiles' => \App\Models\CandidateProfile::where('user_id', Auth::id())->get(),
+            ]);
+        }
+        if (Auth::hasRole('') && Auth::id() !== $profiles->user_id) {
+            return view('candidate_profiles.create');
+        }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
-        return view('candidate_profiles.create');
+        $cprofiles = \App\Models\CandidateProfile::where('user_id', Auth::id())->first();
+        $iprofiles = \App\Models\InvestorProfile::where('user_id', Auth::id())->first();
+        if (Auth::hasRole('investor') || Auth::hasRole('admin') || Auth::hasRole('candidate')) {
+            abort(403, 'Unauthorized access');
+        }
+        if (Auth::hasRole('') && Auth::id() !== $cprofiles->user_id && Auth::id() !== $iprofiles->user_id) {
+            return view('candidate_profiles.create');
+        } else {
+            abort(403, 'Unauthorized access');
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -57,35 +72,24 @@ class CandidateProfileController extends Controller
         return redirect()->route('dashboard')->with('success', 'Candidate profile submitted!');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
-        //
+        $profile = \App\Models\CandidateProfile::findOrFail($id);
+        if (Auth::hasRole('admin') || Auth::id() === $profile->user_id) {
+            return view('candidate_profiles.show');
+        } else {
+            abort(403, 'Unauthorized access');
+        }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
-        //
+        $profile = \App\Models\CandidateProfile::findOrFail($id);
+        if (Auth::hasRole('admin')) {
+            $profile->delete();
+            return redirect()->route('candidate_profiles.index')->with('success', 'Profile deleted successfully.');
+        } else {
+            abort(403, 'Unauthorized access');
+        }
     }
 }

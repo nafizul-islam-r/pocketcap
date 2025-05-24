@@ -15,13 +15,26 @@ class ApplicationController extends Controller
      */
     public function index()
     {
-        $applications = Application::where('user_id', Auth::id())->get();
-        return view('applications.index', compact('applications'));
+        $applications = Application::all();
+        if (Auth::hasRole('admin')) {
+            return view('applications.index', compact('applications'));
+        } elseif (Auth::hasRole('investor')) {
+            return view('applications.investor_index', compact('applications'));
+        } elseif (Auth::hasRole('candidate')) {
+            $applications = Application::where('user_id', Auth::id())->get();
+            return view('applications.candidate_index', compact('applications'));
+        } else {
+            abort(403, 'Unauthorized access');
+        }
     }
 
     // Show form to create new application
     public function create()
     {
+        if (!Auth::hasRole('candidate')) {
+            abort(403, 'Unauthorized access');
+        }
+        
         return view('applications.create');
     }
 
@@ -58,7 +71,9 @@ class ApplicationController extends Controller
     public function show(Application $application)
     {
         $this->authorize('view', $application);
-        return view('applications.show', compact('application'));
+        return view('applications.show', data: [
+            'application' => $application,
+        ]);
     }
 
     /**
@@ -66,7 +81,11 @@ class ApplicationController extends Controller
      */
     public function edit(Application $application)
     {
-        //
+        $this->authorize('update', $application);
+        
+        return view('applications.edit', data: [
+            'application' => $application,
+        ]);
     }
 
     /**
@@ -74,7 +93,21 @@ class ApplicationController extends Controller
      */
     public function update(Request $request, Application $application)
     {
-        //
+        $this->authorize('update', $application);
+
+        $request->validate([
+            'business_name' => 'required|string|max:255',
+            'business_type' => 'required|string|max:255',
+            'business_description' => 'required|string',
+            'business_duration' => 'required|string|max:255',
+            'business_location' => 'required|string|max:255',
+            'requested_amount' => 'required|numeric',
+            'equity_percentage' => 'required|numeric|between:0,100',
+        ]);
+
+        $application->update($request->all());
+
+        return redirect()->route('applications.index')->with('success', 'Application updated successfully.');
     }
 
     /**
@@ -82,6 +115,10 @@ class ApplicationController extends Controller
      */
     public function destroy(Application $application)
     {
-        //
+        $this->authorize('delete', $application);
+
+        $application->delete();
+
+        return redirect()->route('applications.index')->with('success', 'Application deleted successfully.');
     }
 }

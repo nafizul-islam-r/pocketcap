@@ -14,8 +14,15 @@ class InvestmentController extends Controller
      */
     public function index()
     {
-        $investments = Investment::where('user_id', Auth::id())->with('application')->get();
-        return view('investments.index', compact('investments'));
+        $investments = Investment::All();
+        if (Auth::hasRole('admin')) {
+            return view('investments.index', compact('investments'));
+        } elseif (Auth::hasRole('investor')) {
+            $investments = Investment::where('user_id', Auth::id())->get();
+            return view('investments.investor_index', compact('investments'));
+        } else {
+            abort(403, 'Unauthorized access');
+        }
     }
 
     /**
@@ -24,7 +31,7 @@ class InvestmentController extends Controller
     public function create(Application $application)
     {
         // Only investors, and only for available applications
-        if (!Auth::user()->hasRole('investor') || $application->status !== 'available') {
+        if (!Auth::hasRole('investor') || $application->status !== 'available') {
             abort(403);
         }
 
@@ -33,7 +40,7 @@ class InvestmentController extends Controller
 
     public function store(Request $request, Application $application)
     {
-        if (!Auth::user()->hasRole('investor') || $application->status !== 'available') {
+        if (!Auth::hasRole('investor') || $application->status !== 'available') {
             abort(403);
         }
 
@@ -56,7 +63,7 @@ class InvestmentController extends Controller
             'application_id' => $application->id,
             'amount_invested' => $amount,
             'platform_fee' => $platform_fee,
-            'payment_status' => 'unpaid', // simulated for now
+            'payment_status' => 'unpaid',
         ]);
 
         return redirect()->route('investments.index')->with('success', 'Investment recorded. Please complete payment later.');
@@ -67,30 +74,12 @@ class InvestmentController extends Controller
      */
     public function show(Investment $investment)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Investment $investment)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Investment $investment)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Investment $investment)
-    {
-        //
+        if (Auth::hasRole('admin') || Auth::id() === $investment->user_id) {
+            return view('investments.show', data: [
+                'investment' => $investment,
+            ]);
+        } else {
+            abort(403, 'Unauthorized access');
+        }
     }
 }
