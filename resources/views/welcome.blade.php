@@ -92,7 +92,7 @@
                 <div
                     class="items-center h-44 bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700">
                     <a href="https://nafizul-islam-r.github.io/portfolio/">
-                        <img class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg"
+                        <img style="width: 360px" class=" rounded-lg sm:rounded-none sm:rounded-l-lg"
                             src="{{ asset('team/ACID.jpg') }}"
                             alt="ACID Avatar" />
                     </a>
@@ -109,7 +109,7 @@
                 <div
                     class="items-center h-44 bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700">
                     <a href="#">
-                        <img class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg"
+                        <img style="width: 400px" class=" rounded-lg sm:rounded-none sm:rounded-l-lg"
                             src="{{ asset('team/Razib.jpg') }}"
                             alt="Razib Avatar" />
                     </a>
@@ -126,7 +126,7 @@
                 <div
                     class="items-center h-44 bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700">
                     <a href="#">
-                        <img class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg"
+                        <img style="width: 300px" class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg"
                             src="{{ asset('team/Jitu.jpg') }}"
                             alt="Jitu Avatar" />
                     </a>
@@ -145,7 +145,7 @@
                 <!-- Card 4 -->
                 <div class="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700">
                     <a href="#">
-                        <img class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg"
+                        <img style="width: 500px" class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg"
                             src="{{ asset('team/Abirata.jpg') }}"
                             alt="Abirata Avatar" />
                     </a>
@@ -161,7 +161,7 @@
                 <!-- Card 5 -->
                 <div class="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700">
                     <a href="#">
-                        <img class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg"
+                        <img style="width: 450px" class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg"
                             src="{{ asset('team/Rion.jpg') }}"
                             alt="Rion Avatar" />
                     </a>
