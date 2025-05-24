@@ -29,16 +29,17 @@ class CandidateProfileController extends Controller
 
     public function create()
     {
-        $cprofiles = \App\Models\CandidateProfile::where('user_id', Auth::id())->first();
-        $iprofiles = \App\Models\InvestorProfile::where('user_id', Auth::id())->first();
-        if (Auth::hasRole('investor') || Auth::hasRole('admin') || Auth::hasRole('candidate')) {
-            abort(403, 'Unauthorized access');
-        }
-        if (Auth::hasRole('') && Auth::id() !== $cprofiles->user_id && Auth::id() !== $iprofiles->user_id) {
-            return view('candidate_profiles.create');
-        } else {
-            abort(403, 'Unauthorized access');
-        }
+        // $cprofiles = \App\Models\CandidateProfile::where('user_id', Auth::id())->first();
+        // $iprofiles = \App\Models\InvestorProfile::where('user_id', Auth::id())->first();
+        // if (Auth::hasRole('investor') || Auth::hasRole('admin') || Auth::hasRole('candidate')) {
+        //     abort(403, 'Unauthorized access');
+        // }
+        // if (Auth::hasRole('') && Auth::id() !== $cprofiles->user_id && Auth::id() !== $iprofiles->user_id) {
+        //     return view('candidate_profiles.create');
+        // } else {
+        //     abort(403, 'Unauthorized access');
+        // }
+        return view('candidate_profiles.create');
     }
 
     public function store(Request $request)
