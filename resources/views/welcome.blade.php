@@ -91,18 +91,17 @@
                 <!-- Card 1 -->
                 <div
                     class="items-center h-44 bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700">
-                    <a href="#">
+                    <a href="https://nafizul-islam-r.github.io/portfolio/">
                         <img class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg"
-                            src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/bonnie-green.png"
-                            alt="Bonnie Avatar" />
+                            src="{{ asset('team/ACID.jpg') }}"
+                            alt="ACID Avatar" />
                     </a>
                     <div class="p-5">
                         <h3 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
-                            <a href="#">Bonnie Green</a>
+                            <a href="https://nafizul-islam-r.github.io/portfolio/">ACID</a>
                         </h3>
-                        <span class="text-gray-500 dark:text-gray-400">CEO & Web Developer</span>
-                        <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">Bonnie drives the technical
-                            strategy of PocketCap.</p>
+                        <span class="text-gray-500 dark:text-gray-400">CEO & Lead Developer</span>
+                        <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">ACID is a maniac about developing Web Applications.</p>
                     </div>
                 </div>
 
@@ -111,16 +110,15 @@
                     class="items-center h-44 bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700">
                     <a href="#">
                         <img class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg"
-                            src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png"
-                            alt="Jese Avatar" />
+                            src="{{ asset('team/Razib.jpg') }}"
+                            alt="Razib Avatar" />
                     </a>
                     <div class="p-5">
                         <h3 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
-                            <a href="#">Jese Leos</a>
+                            <a href="#">Mursalin</a>
                         </h3>
-                        <span class="text-gray-500 dark:text-gray-400">CTO</span>
-                        <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">Jese leads system architecture
-                            and platform security.</p>
+                        <span class="text-gray-500 dark:text-gray-400">Business Analyst</span>
+                        <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">Razib loves new business ideas and empowers people daily.</p>
                     </div>
                 </div>
 
@@ -129,16 +127,15 @@
                     class="items-center h-44 bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700">
                     <a href="#">
                         <img class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg"
-                            src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gouch.png"
-                            alt="Michael Avatar" />
+                            src="{{ asset('team/Jitu.jpg') }}"
+                            alt="Jitu Avatar" />
                     </a>
                     <div class="p-5">
                         <h3 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
-                            <a href="#">Michael Gough</a>
+                            <a href="#">Tadbir Tareq</a>
                         </h3>
-                        <span class="text-gray-500 dark:text-gray-400">Frontend Developer</span>
-                        <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">Michael builds responsive UI
-                            with Tailwind CSS.</p>
+                        <span class="text-gray-500 dark:text-gray-400">Graphics Designer</span>
+                        <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">Tadbir is passionate about creative designing and graphical work.</p>
                     </div>
                 </div>
             </div>
@@ -149,16 +146,15 @@
                 <div class="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700">
                     <a href="#">
                         <img class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg"
-                            src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/sofia-mcguire.png"
-                            alt="Sofia Avatar" />
+                            src="{{ asset('team/Abirata.jpg') }}"
+                            alt="Abirata Avatar" />
                     </a>
                     <div class="p-5">
                         <h3 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
-                            <a href="#">Sofia McGuire</a>
+                            <a href="#">Abirata</a>
                         </h3>
-                        <span class="text-gray-500 dark:text-gray-400">Marketing Manager</span>
-                        <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">Sofia leads campaign strategy
-                            and user acquisition.</p>
+                        <span class="text-gray-500 dark:text-gray-400">Member</span>
+                        <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">Abirata is very passionate with problem solving and competitive programming.</p>
                     </div>
                 </div>
 
@@ -166,16 +162,15 @@
                 <div class="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700">
                     <a href="#">
                         <img class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg"
-                            src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/sofia-mcguire.png"
-                            alt="Lana Avatar" />
+                            src="{{ asset('team/Rion.jpg') }}"
+                            alt="Rion Avatar" />
                     </a>
                     <div class="p-5">
                         <h3 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
-                            <a href="#">Lana Byrd</a>
+                            <a href="#">Ridoan</a>
                         </h3>
-                        <span class="text-gray-500 dark:text-gray-400">Product Analyst</span>
-                        <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">Lana analyzes investor behavior
-                            and improves UX.</p>
+                        <span class="text-gray-500 dark:text-gray-400">Member</span>
+                        <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">Ridoan expertize is collecting and Data collecting and Analyzing them.</p>
                     </div>
                 </div>
             </div>
