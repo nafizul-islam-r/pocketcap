@@ -19,7 +19,7 @@
 
                 <li>
                     <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
-                        <img src={{ asset('logo_bg.png') }} class="h-12" />
+                        <img src={{ asset('logo_bg.png') }} />
                     </a>
                 </li>
 
