@@ -10,32 +10,36 @@ class InvestorProfileController extends Controller
 
     public function index()
     {
-        $profiles = \App\Models\InvestorProfile::all();
-        if (Auth::hasRole('admin')) {
-            return view('investor_profiles.index', compact('profiles'));
-        }
-        else if (Auth::hasRole('investor')) {
-            return view('investor_profiles.show', [
-                'profiles' => \App\Models\InvestorProfile::where('user_id', Auth::id())->get(),
-            ]);
-        }
-        if (Auth::hasRole('') && Auth::id() !== $profiles->user_id) {
-            return view('investor_profiles.create');
-        }
+        // $profiles = \App\Models\InvestorProfile::all();
+        // if (Auth::hasRole('admin')) {
+        //     return view('investor_profiles.index', compact('profiles'));
+        // }
+        // else if (Auth::hasRole('investor')) {
+        //     return view('investor_profiles.show', [
+        //         'profiles' => \App\Models\InvestorProfile::where('user_id', Auth::id())->get(),
+        //     ]);
+        // }
+        // if (Auth::hasRole('') && Auth::id() !== $profiles->user_id) {
+        //     return view('investor_profiles.create');
+        // }
+        return view('investor_profiles.index', [
+            'profiles' => \App\Models\InvestorProfile::where('user_id', Auth::id())->get(),
+        ]);
     }
 
     public function create()
     {
-        $cprofiles = \App\Models\CandidateProfile::where('user_id', Auth::id())->first();
-        $iprofiles = \App\Models\InvestorProfile::where('user_id', Auth::id())->first();
-        if (Auth::hasRole('investor') || Auth::hasRole('admin') || Auth::hasRole('candidate')) {
-            abort(403, 'Unauthorized access');
-        }
-        if (Auth::hasRole('') && Auth::id() !== $cprofiles->user_id && Auth::id() !== $iprofiles->user_id) {
-            return view('candidate_profiles.create');
-        } else {
-            abort(403, 'Unauthorized access');
-        }
+        // $cprofiles = \App\Models\CandidateProfile::where('user_id', Auth::id())->first();
+        // $iprofiles = \App\Models\InvestorProfile::where('user_id', Auth::id())->first();
+        // if (Auth::hasRole('investor') || Auth::hasRole('admin') || Auth::hasRole('candidate')) {
+        //     abort(403, 'Unauthorized access');
+        // }
+        // if (Auth::hasRole('') && Auth::id() !== $cprofiles->user_id && Auth::id() !== $iprofiles->user_id) {
+        //     return view('candidate_profiles.create');
+        // } else {
+        //     abort(403, 'Unauthorized access');
+        // }
+        return view('investor_profiles.create');
     }
 
     public function store(Request $request)
@@ -78,21 +82,24 @@ class InvestorProfileController extends Controller
     public function show(string $id)
     {
         $profile = \App\Models\InvestorProfile::findOrFail($id);
-        if (Auth::hasRole('admin') || Auth::id() === $profile->user_id) {
-            return view('investor_profiles.show');
-        } else {
-            abort(403, 'Unauthorized access');
-        }
+        // if (Auth::hasRole('admin') || Auth::id() === $profile->user_id) {
+        //     return view('investor_profiles.show');
+        // } else {
+        //     abort(403, 'Unauthorized access');
+        // }
+        return view('investor_profiles.show', compact('profile'));
     }
 
     public function destroy(string $id)
     {
         $profile = \App\Models\InvestorProfile::findOrFail($id);
-        if (Auth::hasRole('admin')) {
-            $profile->delete();
-            return redirect()->route('investor_profiles.index')->with('success', 'Profile deleted successfully.');
-        } else {
-            abort(403, 'Unauthorized access');
-        }
+        // if (Auth::hasRole('admin')) {
+        //     $profile->delete();
+        //     return redirect()->route('investor_profiles.index')->with('success', 'Profile deleted successfully.');
+        // } else {
+        //     abort(403, 'Unauthorized access');
+        // }
+        $profile->delete();
+        return redirect()->route('investor_profiles.index')->with('success', 'Profile deleted successfully.');
     }
 }
