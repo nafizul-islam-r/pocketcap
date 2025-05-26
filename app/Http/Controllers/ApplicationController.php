@@ -31,9 +31,9 @@ class ApplicationController extends Controller
     // Show form to create new application
     public function create()
     {
-        if (!Auth::hasRole('candidate')) {
-            abort(403, 'Unauthorized access');
-        }
+        // if (!Auth::hasRole('candidate')) {
+        //     abort(403, 'Unauthorized access');
+        // }
         
         return view('applications.create');
     }
