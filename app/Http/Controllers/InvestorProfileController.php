@@ -54,8 +54,8 @@ class InvestorProfileController extends Controller
             'company' => 'required|string|max:255',
             'business_interest' => 'required|string|max:255',
             'nid_passport_number' => 'required|string|max:50|unique:investor_profiles,nid_passport_number',
-            'nid_passport_photo' => 'required|image|max:2048|mimes:jpg,jpeg,png,pdf',
-            'bank_statement_pdf' => 'required|mimes:pdf|max:5120',
+            'nid_passport_photo' => 'required|file|max:2048|mimes:jpg,jpeg,png,pdf',
+            'bank_statement_pdf' => 'required|file|max:2048|mimes:jpg,jpeg,png,pdf',
         ]);
 
         // 2. Handle file uploads
@@ -69,6 +69,7 @@ class InvestorProfileController extends Controller
         // 3. Attach the authenticated user & default status
         $validated['user_id'] = Auth::id();
         $validated['status'] = 'pending';
+
 
         // 4. Create the record
         \App\Models\InvestorProfile::create($validated);
