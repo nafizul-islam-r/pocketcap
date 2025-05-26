@@ -12,18 +12,21 @@ class CandidateProfileController extends Controller
      */
     public function index()
     {
-        $profiles = \App\Models\CandidateProfile::all();
-        if (Auth::hasRole('admin')) {
-            return view('candidate_profiles.index', compact('profiles'));
-        }
-        else if (Auth::hasRole('candidate')) {
-            return view('candidate_profiles.show', [
-                'profiles' => \App\Models\CandidateProfile::where('user_id', Auth::id())->get(),
-            ]);
-        }
-        if (Auth::hasRole('') && Auth::id() !== $profiles->user_id) {
-            return view('candidate_profiles.create');
-        }
+        // $profiles = \App\Models\CandidateProfile::all();
+        // if (Auth::hasRole('admin')) {
+        //     return view('candidate_profiles.index', compact('profiles'));
+        // }
+        // else if (Auth::hasRole('candidate')) {
+        //     return view('candidate_profiles.show', [
+        //         'profiles' => \App\Models\CandidateProfile::where('user_id', Auth::id())->get(),
+        //     ]);
+        // }
+        // if (Auth::hasRole('') && Auth::id() !== $profiles->user_id) {
+        //     return view('candidate_profiles.create');
+        // }
+        return view('candidate_profiles.index', [
+            'profiles' => \App\Models\CandidateProfile::where('user_id', Auth::id())->get(),
+        ]);
     }
 
 
@@ -76,21 +79,24 @@ class CandidateProfileController extends Controller
     public function show(string $id)
     {
         $profile = \App\Models\CandidateProfile::findOrFail($id);
-        if (Auth::hasRole('admin') || Auth::id() === $profile->user_id) {
-            return view('candidate_profiles.show');
-        } else {
-            abort(403, 'Unauthorized access');
-        }
+        // if (Auth::hasRole('admin') || Auth::id() === $profile->user_id) {
+        //     return view('candidate_profiles.show');
+        // } else {
+        //     abort(403, 'Unauthorized access');
+        // }
+        return view('candidate_profiles.show', compact('profile'));
     }
 
     public function destroy(string $id)
     {
         $profile = \App\Models\CandidateProfile::findOrFail($id);
-        if (Auth::hasRole('admin')) {
-            $profile->delete();
-            return redirect()->route('candidate_profiles.index')->with('success', 'Profile deleted successfully.');
-        } else {
-            abort(403, 'Unauthorized access');
-        }
+        // if (Auth::hasRole('admin')) {
+        //     $profile->delete();
+        //     return redirect()->route('candidate_profiles.index')->with('success', 'Profile deleted successfully.');
+        // } else {
+        //     abort(403, 'Unauthorized access');
+        // }
+        $profile->delete();
+        return redirect()->route('candidate_profiles.index')->with('success', 'Profile deleted successfully.');
     }
 }
