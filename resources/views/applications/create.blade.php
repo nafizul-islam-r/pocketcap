@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> 872928e592ebd845e80765f967c6875a0ee06adf
 
 @section('content')
 <div class="bg-gray-900 min-h-screen p-6 text-white">
