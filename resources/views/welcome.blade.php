@@ -162,15 +162,15 @@
                 <div class="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700">
                     <a href="#">
                         <img style="width: 450px" class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg"
-                            src="{{ asset('team/Rion.jpg') }}"
-                            alt="Rion Avatar" />
+                            src="{{ asset('team/Samia.jpg') }}"
+                            alt="Samia Avatar" />
                     </a>
                     <div class="p-5">
                         <h3 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
-                            <a href="#">Ridoan</a>
+                            <a href="#">Samia</a>
                         </h3>
                         <span class="text-gray-500 dark:text-gray-400">Member</span>
-                        <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">Ridoan expertize is collecting and Data collecting and Analyzing them.</p>
+                        <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">Samia expertize is collecting and Data collecting and Analyzing them.</p>
                     </div>
                 </div>
             </div>
